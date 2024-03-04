@@ -14,7 +14,7 @@
     }
 
     header {
-      background-color: #990b0b;
+      background: linear-gradient(to right, #000, #990b0b, #000);
       padding: 20px;
       text-align: center;
     }
@@ -30,18 +30,24 @@
     }
 
     nav a {
-      text-decoration: none;
-      color: #fff;
-      padding: 10px 20px;
+      display: inline-block;
       margin: 0 10px;
       border: 2px solid #fff;
       border-radius: 5px;
-      transition: background-color 0.3s, color 0.3s;
+      overflow: hidden;
+      position: relative;
+      width: 16vw; /* Set a width relative to the viewport width */
+      height: 9vw; /* Set a height based on the 16:9 aspect ratio */
     }
 
-    nav a:hover {
-      background-color: #fff;
-      color: #1c1c1c;
+    nav img {
+      width: 100%;
+      height: auto;
+      transition: transform 0.3s;
+    }
+
+    nav a:hover img {
+      transform: scale(1.1);
     }
 
     section {
@@ -78,37 +84,92 @@
       bottom: 0;
       width: 100%;
     }
+
+    #search-container {
+      margin-top: 20px;
+      text-align: center;
+    }
+
+    #search-input {
+      padding: 8px;
+      border: 2px solid #fff;
+      border-radius: 5px;
+      margin-right: 5px;
+    }
+
+    #search-button {
+      padding: 8px 15px;
+      background-color: #fff;
+      color: #1c1c1c;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
   </style>
 </head>
 <body>
 
-    <div id="loading">
-        <div id="loading-text">Loading...</div>
-      </div>
+  <div id="loading">
+    <div id="loading-text">Loading...</div>
+  </div>
 
   <header>
     <h1>EXBET</h1>
+    <div id="search-container">
+      <input type="text" id="search-input" placeholder="Search by name">
+      <button id="search-button" onclick="searchByName()">Search</button>
+    </div>
   </header>
 
   <nav>
-    <a href="Pharaon Secret Tresure/index.html">Pharaoh Secret Treasure</a>
-    <a href="Mega Bonus Cherry/index.html">Mega Bonus Cherry</a>
-    <a href="West Boy Bonus/index.html">West Boy Bonus</a>
+    <a href="Pharaon Secret Tresure/index.html">
+      <img src="Pharaon Secret Tresure/images/banner.png" alt="Pharaoh Secret Treasure">
+    </a>
+    <a href="Mega Bonus Cherry/index.html">
+      <img src="Mega Bonus Cherry/images/banner.png" alt="Mega Bonus Cherry">
+    </a>
+    <a href="West Boy Bonus/index.html">
+      <img src="West Boy Bonus/images/banner.png" alt="West Boy Bonus">
+    </a>
   </nav>
 
+  <section class="hidden" id="game1">
+    <!-- Add your content for Game 1 here -->
+  </section>
+
+  <section class="hidden" id="game2">
+    <!-- Add your content for Game 2 here -->
+  </section>
+
+  <section class="hidden" id="game3">
+    <!-- Add your content for Game 3 here -->
+  </section>
 
   <footer>
     &copy; 2024 EXBET. All rights reserved.
   </footer>
 
-</body>
-
-<script>
+  <script>
     // Simulate a delay before displaying the content
     setTimeout(function() {
       document.getElementById('loading').style.display = 'none';
       document.getElementById('game1').style.display = 'block';
     }, 2000); // 2000 milliseconds (2 seconds)
+
+    function searchByName() {
+      var searchTerm = document.getElementById('search-input').value.toLowerCase();
+      var games = document.querySelectorAll('nav a img');
+
+      games.forEach(function(game) {
+        var altText = game.alt.toLowerCase();
+        if (altText.includes(searchTerm)) {
+          game.parentNode.style.display = 'inline-block';
+        } else {
+          game.parentNode.style.display = 'none';
+        }
+      });
+    }
   </script>
 
+</body>
 </html>
