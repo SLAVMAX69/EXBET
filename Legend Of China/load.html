@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Loading Page</title>
+<style>
+    /* Styles for the loading page */
+    body {
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        background-color: #f2f2f2;
+    }
+    video {
+        width: 100vw;
+        height: 100vh;
+        object-fit: cover;
+    }
+</style>
+</head>
+<body>
+<video autoplay loop muted>
+  <source src="images/loading.mp4" type="video/mp4">
+  Your browser does not support the video tag.
+</video>
+
+<script>
+    // Redirect after 7 seconds
+    setTimeout(function() {
+        window.location.href = "index.html";
+    }, 7000); // 7 seconds in milliseconds
+</script>
+</body>
+</html>
